@@ -6,6 +6,8 @@ Nick Garza
 Intialize: set working directory and load required packages
 ===========================================================
 
+Notable packages: DESeq2. We use human annotated genes and DESeq2 functions to prepare for data generation
+
 ``` r
 # set working directory to outputs
 base.dir = "~/Documents/UVA/Z99"
@@ -110,6 +112,8 @@ size_factors = estimateSizeFactorsForMatrix(expr0)
 Initialize DESeq object with size factors and conditions of interest
 ====================================================================
 
+We initialize the deseq object with a count matrix, coldata, and design. We lastly generate a list of conditions for which we want to compare differential expression.
+
 ``` r
 # create deseq object
 conditions = sapply(names(size_factors),function(x){
@@ -130,6 +134,8 @@ full_annotation$conditions = full_annotation$conditions %>% as.character
 
 Function for pairwise expression analysis
 =========================================
+
+This function generates a list of list with the first entry data\[\[1\]\] being the DESeq2 comparison matrices and the second entry data\[\[2\]\] a list of ma-plots to represent the data compared at the different time points.
 
 ``` r
 # function to generate pairwise expression analysis and ma-plots of results
@@ -173,6 +179,8 @@ ma_deg <- function(condits, annotations){
 
 Call function and save data + plots
 ===================================
+
+An example of calling this function and putting its output into two separate lists
 
 ``` r
 # call function with given params
