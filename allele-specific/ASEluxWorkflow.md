@@ -107,7 +107,7 @@ ASElux="../ASElux-master/bin/ASElux"
 #align the fastq files
 $ASElux align --fq --se --readLen 75 --index index --vcf individual_chr.vcf --seqFiles pooled.fastq --out individual-run_rc.txt
 ```
-Make executable as before with ```chmod u+x align-sample.sh``` and run ```$/.align-sample.sh```.
+Make executable as before with ```chmod u+x align-sample.sh``` and run ```$./align-sample.sh```.
 #### Note
 Some problems that could arise:
 1. Ensuring proper read length  
