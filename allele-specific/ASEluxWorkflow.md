@@ -82,7 +82,7 @@ The parameters for both building stage of the program and the aligning stage are
 For our data, we have pooled fastq PRO-Seq data from three separate donors. Our data is in reference to hg38 and thus requires the annotation file to build the static index. The proper files we used were an hg38 fasta file downloaded from: <http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/> and the gtf annotation Homo_sapiens.GRCh38.87.gtf.
 
 #### Note
-As is, the gtf annotation file is lists CHRM only by #, but we need to have listings by chr# to have proper correspondence with our ```hg38.fa``` file during the static index build. To convert only requires a short perl command: ```perl -ne 'if (/^#/){print $_;}else{print "chr".$_;}' Homo_sapiens.GRCh38.87.gtf > Homo_sapiens.GRCh38.87.chr.gtf``` 
+As is, the gtf annotation file lists CHRM only by #, but we need to have listings by chr# to have proper correspondence with our ```hg38.fa``` file during the static index build. To convert only requires a short perl command: ```perl -ne 'if (/^#/){print $_;}else{print "chr".$_;}' Homo_sapiens.GRCh38.87.gtf > Homo_sapiens.GRCh38.87.chr.gtf``` 
 
 ## Building the Static Index
 
