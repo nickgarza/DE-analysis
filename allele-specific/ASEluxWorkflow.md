@@ -6,7 +6,8 @@ The pipeline for the package creates a static index based off of a reference gen
 
 ## Acquire ASElux from from GitHub
 
- To install, clone the repo from: <https://github.com/abl0719/ASElux.git> into a directory you wish to work in using CMD ``` git clone https://github.com/abl0719/ASElux.git .```
+To install, clone the repo from: <https://github.com/abl0719/ASElux.git> into a directory you wish to work in using CMD ``` git clone https://github.com/abl0719/ASElux.git .```
+To create executable binary file, make sure the GCC compiler is loaded and type ```make``` in the /ASElux directory.
 
 ## Sample Run 
 A sample can be run by going into the demo folder and running the ```script.sh``` file which should appear as:
