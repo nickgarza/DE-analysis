@@ -9,6 +9,9 @@ The pipeline for the package creates a static index based off of a reference gen
 To install, clone the repo from: <https://github.com/abl0719/ASElux.git> into a directory you wish to work in using CMD ``` git clone https://github.com/abl0719/ASElux.git .```
 To create executable binary file, make sure the GCC compiler is loaded and type ```make``` in the /ASElux directory.
 
+## Dependencies and Preparation for your data
+As stated above, ASElux is dependent on having a C++ compiler gcc>=5 as well as genotyping data, reference genome, and annotations. To move your data from ped to vcf, I recommend using plink command --file --recode. I included the script I used for chromosomes 1-22 in the repo <https://github.com/nickgarza/SMC-analysis/tree/master/allele-specific>. If your genotyping data is split by chromosomes, I recommend using the bcftools tools command "concat" to coombine the files with proper indexing. If you wish to separate the samples/individual genotyping from a pooled set, using ``` bcftools view -s samples pooled.vcf > sample.vcf```. Bcftools is most easily downloaded from a package manager like pip or conda through channel "bioconda bcftools".
+
 ## Sample Run 
 A sample can be run by going into the demo folder and running the ```script.sh``` file which should appear as:
 
@@ -102,7 +105,7 @@ Building static index...
 Annotation finished...
 annotation created...
 ```
-New files should have been created with names ```index.annotation```, ```index_genome.sa```, ```index_gene.sa```. This process should take the longest as we have a lot of data to index. You now have a static index for alignment and need not build it again.
+New files should have been created with names ```index.annotation```, ```index_genome.sa```, ```index_gene.sa```. Each file has ".sa" extention for "static annotation". This process should take a while as we have a lot of data to index. You now have a static index for alignment and need not build it again.
 
 ## Building Dynamic Index and Aligning Reads
 Next, we build the individual specific dynamic index and align our data to our static index. For this step I created a script (we'll call it ```align-sample.sh```) which looked something like this:
@@ -115,7 +118,7 @@ Make executable as before with ```chmod u+x align-sample.sh``` and run ```$./ali
 #### Note
 Some problems that could arise:
 1. Ensuring proper read length  
-To find the read length to use in the alignment stage, I used the FastQC tool to find the average read length of my fastq data
+To find the read length to use in the alignment stage, I used the FastQC tool to find the average read length of my fastq data. If read length is incorrect for the fastq file you are using, you will see little to no results.
 2. Correspondence of that fastq/fasta and the vcf file  
 Just as when building the static index, we want to make sure that the first column in the vcf file is individual specific and has the same chr# formatting as our index and fastq file. If not, running the one liner ```perl -ne 'if (/^#/){print $_;}else{print "chr".$_;}' individual.vcf > individual_chr.vcf``` should do the trick.
 
@@ -128,4 +131,4 @@ Start alignment...
 Processed ########## reads
 average speed is ###### reads/s
 ```
-You should see a new file created named ```individual-run_rc.txt``` with columns for SNP ID, reference allele count, alternative allele count, and proportion of reference allele.
+The alignment process on a 47116020 line vcf file and 244881920 line fastq file took about 12 hours on an 8GB RAM machine. After completion, you should see a new file created named ```individual-run_rc.txt``` with columns for SNP ID, reference allele count, alternative allele count, and proportion of reference allele. If you wish to extract the variant location from the output file, the simple awk command ```awk -F " " '{print $1} individual-run_rc.txt > individual-run_snps.txt``` should retain only the SNP IDs. If you have any additional questions ona specific issue, I can help troubleshoot at ngarza@jhu.edu.
