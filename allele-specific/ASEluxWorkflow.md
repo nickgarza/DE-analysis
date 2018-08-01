@@ -86,7 +86,7 @@ For our data, we have pooled fastq PRO-Seq data from three separate donors. Our 
 As is, the gtf annotation file lists CHRM only by #, but we need to have listings by chr# to have proper correspondence with our ```hg38.fa``` file during the static index build. To convert only requires a short perl command: ```perl -ne 'if (/^#/){print $_;}else{print "chr".$_;}' Homo_sapiens.GRCh38.87.gtf > Homo_sapiens.GRCh38.87.chr.gtf``` 
 
 ## Preparing your data
-To ensure the genotyping data is in the right format, I included some scripting I used to convert bed/ped/map/plink formats to .vcf formatting in my repo <https://github.com/nickgarza/SMC-analysis/tree/master/allele-specific>. In this folder you will also find an awk script to append the "chr" indexing on gtf/vcf files to match with resective fa/fastq files. 
+To ensure the genotyping data is in the right format, I included some scripting I used to convert bed/ped/map/plink formats to .vcf formatting in my repo <https://github.com/nickgarza/SMC-analysis/tree/master/allele-specific>. In this folder you will also find an awk script to append the "chr" indexing on gtf/vcf files to match with resective fa/fastq files. It looks something like this: ```awk '{if($0 !~ /^#/) print "chr"$0; else print $0}' sample.vcf > sample_chr.vcf```. A faster version using perl is included below as well.
 
 ## Building the Static Index
 
