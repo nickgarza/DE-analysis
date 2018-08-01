@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1533154352685.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3822488547",
+    "id" : "9C63BCE8",
+    "lastKnownWriteTime" : 1533156785,
+    "last_content_update" : 1533156785227,
+    "path" : "~/DEcompare/man/ma_deg.Rd",
+    "project_path" : "man/ma_deg.Rd",
+    "properties" : {
+        "cursorPosition" : "19,2",
+        "scrollLine" : "8",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}

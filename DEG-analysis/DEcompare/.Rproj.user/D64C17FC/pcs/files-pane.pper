@@ -1,0 +1,9 @@
+{
+    "path" : "~/DEcompare",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
